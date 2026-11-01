@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17112d">
+<title>MAGIC MARKET | Discover Something Useful</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+:root{
+ --ink:#1b1730;--muted:#77728a;--purple:#6d3df5;--purple2:#9b5cff;
+ --pink:#f05ca8;--gold:#f7c873;--paper:#faf8ff;--white:#fff;
+ --line:rgba(39,28,75,.09);--shadow:0 18px 55px rgba(39,22,89,.11);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;padding-bottom:86px}
+button,input{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.topbar{height:74px;padding:0 clamp(18px,5vw,70px);display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:1.1px}
+.brand-mark{height:42px;width:42px;border-radius:14px;background:linear-gradient(135deg,#6d3df5,#f05ca8);display:grid;place-items:center;color:white;font-size:21px;box-shadow:0 8px 20px #8b53ef55}
+.brand-name{font-size:17px}.brand-name span{display:block;font-size:9px;letter-spacing:2.8px;color:#938aa8;margin-top:2px}
+.top-actions{display:flex;gap:9px;align-items:center}
+.icon-btn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 13px;color:var(--ink);font-weight:700}
+.icon-btn:hover{border-color:#b9a3ff;color:var(--purple)}
+main{max-width:1120px;margin:auto;padding:0 22px}
+.page{display:none;animation:rise .35s ease}.page.active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.hero{margin:28px 0 30px;min-height:350px;border-radius:30px;overflow:hidden;position:relative;color:white;padding:clamp(30px,6vw,66px);background:radial-gradient(circle at 85% 15%,#ff9ccf88 0,transparent 27%),radial-gradient(circle at 70% 100%,#8c62ff 0,transparent 36%),linear-gradient(120deg,#211542 0%,#4a258b 52%,#a33f9c 100%);box-shadow:0 25px 60px #542d9d30}
+.hero:before,.hero:after{content:"";position:absolute;border:1px solid #ffffff25;border-radius:50%;pointer-events:none}
+.hero:before{width:310px;height:310px;right:-65px;top:-105px}.hero:after{width:220px;height:220px;right:35px;top:35px}
+.hero-content{position:relative;z-index:2;max-width:610px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid #ffffff45;background:#ffffff15;border-radius:30px;font-size:11px;letter-spacing:1.7px;text-transform:uppercase;font-weight:700}
+.eyebrow i{height:7px;width:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(38px,7vw,67px);line-height:1.06;margin:22px 0 14px;letter-spacing:-1px}
+.hero h1 span{color:#ffd5ec}
+.hero p{font-size:15px;line-height:1.8;color:#eee5ff;max-width:490px}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:27px}
+.btn-primary,.btn-glass,.btn-soft,.btn-danger{border:0;border-radius:13px;padding:13px 19px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:.2s}
+.btn-primary{color:white;background:linear-gradient(110deg,#7b4cf6,#ec5ca9);box-shadow:0 10px 25px #9c4fca55}
+.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn-glass{background:#ffffff18;color:white;border:1px solid #ffffff55}
+.btn-soft{background:#f0eaff;color:#6338d9}.btn-danger{background:#fff0f2;color:#d63355}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:34px 0 17px}
+.section-kicker{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--purple)}
+.section-head h2{font-family:'Playfair Display',serif;font-size:clamp(25px,4vw,34px);margin-top:5px}
+.section-head p{font-size:13px;color:var(--muted);margin-top:5px}
+.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:35px}
+.option-card{min-height:178px;border-radius:23px;padding:24px;position:relative;overflow:hidden;color:white;cursor:pointer;box-shadow:var(--shadow);transition:.25s}
+.option-card:hover{transform:translateY(-5px)}
+.option-card.product{background:linear-gradient(130deg,#f35c9f,#8b43ed)}
+.option-card.owner{background:linear-gradient(130deg,#18a9b6,#5367e8)}
+.option-card:after{content:"";position:absolute;width:170px;height:170px;border:1px solid #ffffff40;border-radius:50%;right:-38px;bottom:-95px;box-shadow:0 0 0 18px #ffffff0d,0 0 0 38px #ffffff0a}
+.option-icon{font-size:28px;height:52px;width:52px;display:grid;place-items:center;background:#ffffff25;border:1px solid #ffffff40;border-radius:16px}
+.option-card h3{font-size:21px;margin-top:15px}.option-card p{font-size:12px;color:#ffffffdf;margin-top:5px}
+.arrow-circle{position:absolute;right:20px;top:22px;height:34px;width:34px;border-radius:50%;background:#ffffff30;display:grid;place-items:center}
+.feature-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:10px 0 45px}
+.feature{background:white;border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;gap:11px;align-items:center}
+.feature-icon{font-size:21px}.feature strong{display:block;font-size:12px}.feature small{color:var(--muted);font-size:10px}
+.inner-hero{margin:28px 0 24px;padding:28px;border-radius:24px;background:linear-gradient(120deg,#211542,#6034ae 70%,#b94f9d);color:white;position:relative;overflow:hidden}
+.inner-hero:after{content:"✦";position:absolute;right:25px;top:5px;font-size:110px;color:#ffffff12}
+.inner-hero .section-kicker{color:#ffd4ec}.inner-hero h2{font:700 clamp(28px,5vw,40px) 'Playfair Display',serif;margin:8px 0}.inner-hero p{font-size:13px;color:#eee4ff;line-height:1.7}
+.back-link{display:inline-flex;align-items:center;gap:8px;border:0;background:transparent;color:var(--purple);font-weight:800;padding:12px 0}
+.product-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:15px 0 35px}
+.product-row{border:1px solid var(--line);background:#fff;border-radius:16px;padding:18px;display:flex;align-items:center;gap:13px;text-align:left;box-shadow:0 6px 22px #25154a08;transition:.2s;color:var(--ink);width:100%}
+.product-row:hover{transform:translateY(-3px);border-color:#cbbaff;box-shadow:var(--shadow)}
+.product-symbol{height:42px;width:42px;border-radius:13px;background:linear-gradient(135deg,#f4eaff,#ffe8f4);display:grid;place-items:center;font-size:19px;flex:none}
+.product-row strong{font-size:14px;display:block;overflow-wrap:anywhere}.product-row small{font-size:10px;color:var(--muted);display:block;margin-top:4px}
+.empty-state{grid-column:1/-1;text-align:center;padding:45px 20px;background:white;border:1px dashed #d8cbed;border-radius:20px;color:var(--muted);line-height:1.8}
+.detail-card{max-width:680px;margin:20px auto 40px;background:#fff;border:1px solid var(--line);border-radius:25px;overflow:hidden;box-shadow:var(--shadow)}
+.detail-image-wrap{background:linear-gradient(135deg,#f2eaff,#ffeaf5);min-height:240px;display:grid;place-items:center;padding:20px}
+.detail-image-wrap img{width:100%;max-height:360px;object-fit:contain;border-radius:12px}
+.detail-image-wrap .no-image{font-size:75px}
+.detail-body{padding:25px}.detail-body h2{font:700 30px 'Playfair Display',serif;margin:7px 0 12px}.price-tag{display:inline-flex;align-items:center;gap:7px;background:#f2eaff;color:#6338d9;padding:10px 15px;border-radius:12px;font-weight:800;font-size:21px}
+.owner-panel{max-width:700px;margin:20px auto 40px;background:#fff;border:1px solid var(--line);border-radius:25px;padding:clamp(22px,5vw,38px);box-shadow:var(--shadow)}
+.owner-top{display:flex;align-items:center;gap:18px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.avatar{height:76px;width:76px;border-radius:24px;background:linear-gradient(135deg,#6d3df5,#f05ca8);display:grid;place-items:center;color:#fff;font-size:34px;box-shadow:0 10px 25px #9b5cff45}
+.owner-top h2{font:700 25px 'Playfair Display',serif;margin-bottom:5px}.owner-top p{font-size:12px;color:var(--muted)}
+.contact-list{display:grid;gap:11px;margin-top:22px}
+.contact-item{display:flex;align-items:center;gap:13px;padding:15px;background:#faf8ff;border:1px solid var(--line);border-radius:15px}
+.contact-icon{height:40px;width:40px;border-radius:12px;background:white;display:grid;place-items:center;font-size:18px}
+.contact-item small{font-size:10px;color:var(--muted);display:block;margin-bottom:3px}
+.contact-item strong{font-size:14px;overflow-wrap:anywhere}
+.contact-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.notice{position:fixed;bottom:0;left:0;right:0;z-index:40;background:#211542;color:#fff;padding:12px 0;border-top:2px solid #f4a4d0;overflow:hidden;box-shadow:0 -8px 25px #21154218}
+.notice-track{white-space:nowrap;width:max-content;animation:marquee 48s linear infinite;font-size:12px;font-weight:600;color:#fff0d0}
+@keyframes marquee{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
+.admin-card{max-width:720px;margin:20px auto 40px;background:white;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)}
+.admin-card h3{font-size:17px;margin:5px 0 14px}
+.field{margin:13px 0}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:7px;color:#554c70}
+.field input{width:100%;border:1px solid #e6e0ef;background:#fcfbff;padding:13px 14px;border-radius:12px;outline:none}
+.field input:focus{border-color:#9878f6;box-shadow:0 0 0 3px #9878f61c}
+.preview{width:100%;max-height:190px;object-fit:contain;background:#f5f0ff;border-radius:13px;margin-top:10px;display:none}
+.admin-product{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#faf8ff;border:1px solid var(--line);padding:13px;border-radius:13px;margin:9px 0}
+.admin-product strong{font-size:13px}.admin-product small{display:block;color:var(--muted);margin-top:4px}
+.admin-actions{display:flex;gap:6px;flex-wrap:wrap}
+.admin-actions button{font-size:11px;padding:8px 10px}
+.status{font-size:12px;color:#6842d8;margin-top:10px;line-height:1.6}
+.footer-note{text-align:center;color:#9a93aa;font-size:10px;margin:30px 0 18px}
+@media(max-width:600px){
+ .topbar{height:65px}.brand-name{font-size:15px}.hero{min-height:365px;border-radius:23px;margin-top:18px}
+ .option-grid{gap:12px}.option-card{padding:17px;min-height:164px}.option-card h3{font-size:18px}
+ .feature-strip{grid-template-columns:1fr;gap:8px}.feature{padding:12px}
+ .product-list{grid-template-columns:1fr}.product-row{padding:15px}
+ .top-actions .icon-btn{font-size:11px;padding:9px}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" onclick="goHome();return false">
+    <span class="brand-mark">✦</span>
+    <span class="brand-name">MAGIC MARKET<span>DISCOVER • REUSE • SHARE</span></span>
+  </a>
+  <div class="top-actions">
+    <button class="icon-btn" onclick="goHome()">⌂ Home</button>
+    <button class="icon-btn" onclick="openLogin()">♙ Admin</button>
+  </div>
+</header>
+
+<main>
+  <section id="homePage" class="page active">
+    <div class="hero">
+      <div class="hero-content">
+        <span class="eyebrow"><i></i> A LITTLE MAGIC, A LOT OF USE</span>
+        <h1>Good things deserve<br><span>a second chance.</span></h1>
+        <p>हमारी उपयोगी वस्तुओं को देखें। हो सकता है, जो चीज़ हमारे काम की नहीं, वह आपके काम आ जाए।</p>
+        <div class="hero-buttons">
+          <button class="btn-primary" onclick="showPage('productsPage');loadProducts()">Explore Products <span>↗</span></button>
+          <button class="btn-glass" onclick="showPage('ownerPage')">Meet the Owner</button>
+        </div>
+      </div>
+    </div>
+    <div class="section-head">
+      <div><div class="section-kicker">Explore magic</div><h2>What are you looking for?</h2><p>एक विकल्प चुनें और आगे बढ़ें।</p></div>
+    </div>
+    <div class="option-grid">
+      <article class="option-card product" onclick="showPage('productsPage');loadProducts()">
+        <span class="arrow-circle">↗</span><div class="option-icon">✧</div>
+        <h3>Explore Products</h3><p>देखें उपलब्ध उपयोगी वस्तुएँ</p>
+      </article>
+      <article class="option-card owner" onclick="showPage('ownerPage')">
+        <span class="arrow-circle">↗</span><div class="option-icon">♙</div>
+        <h3>About Owner</h3><p>संपर्क और सोशल प्रोफाइल</p>
+      </article>
+    </div>
+    <div class="feature-strip">
+      <div class="feature"><span class="feature-icon">♻️</span><div><strong>Reuse with purpose</strong><small>वस्तुओं का बेहतर उपयोग</small></div></div>
+      <div class="feature"><span class="feature-icon">🤝</span><div><strong>Simple connection</strong><small>सीधा संपर्क, कोई ग्राहक अकाउंट नहीं</small></div></div>
+      <div class="feature"><span class="feature-icon">♡</span><div><strong>Made to share</strong><small>साझा करने की एक छोटी पहल</small></div></div>
+    </div>
+  </section>
+
+  <section id="productsPage" class="page">
+    <button class="back-link" onclick="goHome()">← Back to Home</button>
+    <div class="inner-hero"><div class="section-kicker">The collection</div><h2>Product Gallery</h2><p>हर वस्तु की अपनी कहानी है। नीचे उपलब्ध वस्तुओं के नाम देखें और किसी पर टैप करके उसकी जानकारी पढ़ें।</p></div>
+    <div class="section-head"><div><div class="section-kicker">Available now</div><h2>Our Products</h2></div></div>
+    <div id="productList" class="product-list"><div class="empty-state">Firebase सेटअप पूरा होने पर प्रोडक्ट यहाँ दिखाई देंगे।</div></div>
+  </section>
+
+  <section id="detailPage" class="page">
+    <button class="back-link" onclick="showPage('productsPage')">← Back to Products</button>
+    <div class="detail-card">
+      <div class="detail-image-wrap"><img id="detailImage" alt="Product image" style="display:none"><div id="detailNoImage" class="no-image">✧</div></div>
+      <div class="detail-body"><div class="section-kicker">Product details</div><h2 id="detailName">Product Name</h2><div class="price-tag" id="detailPrice">₹ 0</div></div>
+    </div>
+  </section>
+
+  <section id="ownerPage" class="page">
+    <button class="back-link" onclick="goHome()">← Back to Home</button>
+    <div class="inner-hero"><div class="section-kicker">Behind Magic Market</div><h2>A little about the owner</h2><p>किसी काम की चीज़ को किसी और के लिए उपयोगी बनाने की एक छोटी कोशिश।</p></div>
+    <div class="owner-panel">
+      <div class="owner-top"><div class="avatar">A</div><div><div class="section-kicker">Founder & Owner</div><h2>ABHISHEK DHAKAD</h2><p>MAGIC MARKET · Owner</p></div></div>
+      <div class="contact-list">
+        <div class="contact-item"><span class="contact-icon">☎</span><div><small>Mobile Number</small><strong>9752639399</strong></div></div>
+        <div class="contact-item"><span class="contact-icon">◉</span><div><small>WhatsApp</small><strong>9630028756</strong></div></div>
+        <div class="contact-item"><span class="contact-icon">◎</span><div><small>Instagram Account</small><strong>@ak_dhakad_09x</strong></div></div>
+      </div>
+      <div class="contact-actions">
+        <a class="btn-primary" href="https://wa.me/919630028756" target="_blank" rel="noopener">WhatsApp ↗</a>
+        <a class="btn-soft" href="tel:9752639399">Call Owner</a>
+        <a class="btn-soft" href="https://www.instagram.com/ak_dhakad_09x/" target="_blank" rel="noopener">Instagram ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="loginPage" class="page">
+    <button class="back-link" onclick="goHome()">← Back to Home</button>
+    <div class="inner-hero"><div class="section-kicker">Private access</div><h2>Admin Sign In</h2><p>यह सेक्शन केवल अधिकृत एडमिन के लिए है।</p></div>
+    <div class="admin-card">
+      <div class="field"><label for="adminEmail">EMAIL ADDRESS</label><input id="adminEmail" type="email" placeholder="Admin email"></div>
+      <div class="field"><label for="adminPassword">PASSWORD</label><input id="adminPassword" type="password" placeholder="Password"></div>
+      <button class="btn-primary" onclick="adminLogin()">Sign In ↗</button>
+      <p id="loginMessage" class="status"></p>
+    </div>
+  </section>
+
+  <section id="adminPage" class="page">
+    <div class="inner-hero"><div class="section-kicker">Control centre</div><h2>Admin Dashboard</h2><p>यहाँ से एक ही फॉर्म में प्रोडक्ट की इमेज, नाम और कीमत जोड़ें।</p></div>
+    <div class="admin-card">
+      <h3 id="formTitle">＋ Add New Product</h3>
+      <div class="field"><label for="pName">PRODUCT NAME</label><input id="pName" type="text" placeholder="उदाहरण: Bluetooth Speaker"></div>
+      <div class="field"><label for="pPrice">PRICE (₹)</label><input id="pPrice" type="number" min="0" step="0.01" placeholder="उदाहरण: 500"></div>
+      <div class="field"><label for="pImage">PRODUCT IMAGE</label><input id="pImage" type="file" accept="image/*"><img id="imagePreview" class="preview" alt="Image preview"></div>
+      <button class="btn-primary" id="saveButton" onclick="saveProduct()">Save Product ✦</button>
+      <button class="btn-soft" id="cancelEdit" style="display:none" onclick="resetForm()">Cancel Edit</button>
+      <p id="saveMessage" class="status"></p>
+    </div>
+    <div class="admin-card"><h3>Manage Products</h3><div id="adminProductList">Loading…</div><button class="btn-danger" onclick="logout()">Logout</button></div>
+  </section>
+  <div class="footer-note">MAGIC MARKET · Discover • Reuse • Share</div>
+</main>
+
+<div class="notice"><div class="notice-track">⚠️ नोट: इस वेबसाइट का उद्देश्य किसी भी प्रकार का लाभ कमाना नहीं है। इसका सही उद्देश्य है - हमारे पास रखी कोई ऐसी वस्तु जो हमारे किसी काम की नहीं हो और उसी वस्तु की आपको आवश्यकता है तो हम उस वस्तु को आप तक पहुँचा दें। 🙏 धन्यवाद 🙏　　✦　　</div></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+// Firebase Console > Project settings > Your apps से अपनी config यहाँ भरें।
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+let auth=null, db=null, firebaseReady=false, editingId=null, currentImageData=null;
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goHome(){showPage('homePage')}
+function openLogin(){showPage('loginPage')}
+function escapeHTML(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+try{
+  if(firebaseConfig.apiKey!=="YOUR_API_KEY" && firebaseConfig.projectId!=="YOUR_PROJECT_ID"){
+    firebase.initializeApp(firebaseConfig);auth=firebase.auth();db=firebase.firestore();firebaseReady=true;
+  }else{
+    document.getElementById('productList').innerHTML='<div class="empty-state">✨ प्रोडक्ट जल्द ही यहाँ दिखाई देंगे।<br><small>वेबसाइट को चालू करने के लिए Firebase Configuration जोड़ें।</small></div>';
+  }
+}catch(e){console.error(e)}
+
+function loadProducts(){
+  if(!firebaseReady)return;
+  db.collection('products').orderBy('createdAt','desc').onSnapshot(snap=>{
+    const box=document.getElementById('productList');let html='';
+    snap.forEach(doc=>{const p=doc.data();html+=`<button class="product-row" onclick="showDetails('${doc.id}')"><span class="product-symbol">✧</span><span><strong>${escapeHTML(p.name||'Unnamed product')}</strong><small>View product details ↗</small></span></button>`});
+    box.innerHTML=html||'<div class="empty-state">अभी कोई प्रोडक्ट उपलब्ध नहीं है।<br>नए प्रोडक्ट यहाँ दिखाई देंगे।</div>';
+  },e=>{console.error(e);document.getElementById('productList').innerHTML='<div class="empty-state">प्रोडक्ट लोड नहीं हो पाए। Firebase Rules जाँचें।</div>'});
+}
+async function showDetails(id){
+  if(!firebaseReady)return;
+  try{
+    const doc=await db.collection('products').doc(id).get();if(!doc.exists)return;
+    const p=doc.data(),img=document.getElementById('detailImage');
+    document.getElementById('detailName').textContent=p.name||'';
+    document.getElementById('detailPrice').textContent='₹ '+p.price;
+    if(p.image){img.src=p.image;img.style.display='block';document.getElementById('detailNoImage').style.display='none'}
+    else{img.style.display='none';document.getElementById('detailNoImage').style.display='block'}
+    showPage('detailPage');
+  }catch(e){alert('Product details लोड नहीं हो पाईं।')}
+}
+async function adminLogin(){
+  if(!firebaseReady){document.getElementById('loginMessage').textContent='पहले Firebase Configuration जोड़ें।';return}
+  try{await auth.signInWithEmailAndPassword(document.getElementById('adminEmail').value.trim(),document.getElementById('adminPassword').value)}
+  catch(e){document.getElementById('loginMessage').textContent='Login नहीं हुआ: '+e.message}
+}
+if(firebaseReady){
+ auth.onAuthStateChanged(async user=>{
+   if(!user){if(document.getElementById('adminPage').classList.contains('active'))goHome();return}
+   try{
+     const a=await db.collection('admins').doc(user.uid).get();
+     if(a.exists&&a.data().admin===true){showPage('adminPage');loadAdminProducts()}
+     else{await auth.signOut();alert('आपको Admin permission नहीं है।');goHome()}
+   }catch(e){console.error(e);alert('Admin permission जाँची नहीं जा सकी।');await auth.signOut();goHome()}
+ });
+}
+document.getElementById('pImage').addEventListener('change',e=>{
+ const file=e.target.files[0],preview=document.getElementById('imagePreview');
+ if(!file){preview.style.display='none';return}
+ if(!file.type.startsWith('image/')){alert('कृपया image file चुनें।');e.target.value='';return}
+ const reader=new FileReader();reader.onload=ev=>{preview.src=ev.target.result;preview.style.display='block'};reader.readAsDataURL(file);
+});
+function compressImage(file){
+ return new Promise((resolve,reject)=>{
+  const reader=new FileReader();reader.onload=e=>{
+   const img=new Image();img.onload=()=>{
+    const canvas=document.createElement('canvas'),scale=Math.min(1,560/Math.max(img.width,img.height));
+    canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);
+    canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
+    const data=canvas.toDataURL('image/jpeg',.48);
+    if(data.length>850000){reject(new Error('यह इमेज बहुत बड़ी है। कृपया छोटी इमेज चुनें।'));return}
+    resolve(data);
+   };img.onerror=reject;img.src=e.target.result;
+  };reader.onerror=reject;reader.readAsDataURL(file);
+ });
+}
+async function saveProduct(){
+ if(!firebaseReady||!auth.currentUser){alert('पहले Admin Login करें।');return}
+ const name=document.getElementById('pName').value.trim(),priceText=document.getElementById('pPrice').value,price=Number(priceText),file=document.getElementById('pImage').files[0];
+ if(!name||priceText===''||!Number.isFinite(price)||price<0){alert('प्रोडक्ट का सही नाम और कीमत भरें।');return}
+ if(!editingId&&!file){alert('कृपया प्रोडक्ट की इमेज चुनें।');return}
+ try{
+  let image=currentImageData;
+  if(file)image=await compressImage(file);
+  const data={name,price,image,updatedAt:firebase.firestore.FieldValue.serverTimestamp()};
+  if(editingId)await db.collection('products').doc(editingId).update(data);
+  else{data.createdAt=firebase.firestore.FieldValue.serverTimestamp();await db.collection('products').add(data)}
+  document.getElementById('saveMessage').textContent='✓ Product successfully saved!';
+  resetForm();
+ }catch(e){alert('सेव नहीं हुआ: '+e.message)}
+}
+function resetForm(){
+ editingId=null;currentImageData=null;
+ document.getElementById('pName').value='';document.getElementById('pPrice').value='';
+ document.getElementById('pImage').value='';document.getElementById('imagePreview').style.display='none';
+ document.getElementById('formTitle').textContent='＋ Add New Product';
+ document.getElementById('saveButton').textContent='Save Product ✦';
+ document.getElementById('cancelEdit').style.display='none';
+}
+function loadAdminProducts(){
+ db.collection('products').orderBy('createdAt','desc').onSnapshot(snap=>{
+  const box=document.getElementById('adminProductList');let html='';
+  snap.forEach(doc=>{const p=doc.data();html+=`<div class="admin-product"><div><strong>${escapeHTML(p.name)}</strong><small>₹ ${escapeHTML(p.price)}</small></div><div class="admin-actions"><button class="btn-soft" onclick="editProduct('${doc.id}')">Edit</button><button class="btn-danger" onclick="deleteProduct('${doc.id}')">Delete</button></div></div>`});
+  box.innerHTML=html||'<p class="status">अभी कोई प्रोडक्ट नहीं है।</p>';
+ });
+}
+async function editProduct(id){
+ const doc=await db.collection('products').doc(id).get();if(!doc.exists)return;
+ const p=doc.data();editingId=id;currentImageData=p.image||null;
+ document.getElementById('pName').value=p.name||'';document.getElementById('pPrice').value=p.price??'';
+ const preview=document.getElementById('imagePreview');
+ if(p.image){preview.src=p.image;preview.style.display='block'}else preview.style.display='none';
+ document.getElementById('formTitle').textContent='✎ Edit Product';
+ document.getElementById('saveButton').textContent='Update Product';
+ document.getElementById('cancelEdit').style.display='inline-flex';
+ window.scrollTo({top:document.getElementById('formTitle').offsetTop-100,behavior:'smooth'});
+}
+async function deleteProduct(id){
+ if(confirm('क्या आप यह Product delete करना चाहते हैं?'))await db.collection('products').doc(id).delete();
+}
+async function logout(){if(auth)await auth.signOut();goHome()}
+</script>
+</body>
+</html>
